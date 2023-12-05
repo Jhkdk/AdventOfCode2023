@@ -11,21 +11,42 @@ import java.util.Set;
 class aocDay_4 {
 	public static void main(String[] args) throws FileNotFoundException {
 		int fin = 0;
-
-		Scanner scan;
-		String line;
-		for (scan = new Scanner(
-				new File("C:\\Users\\cnielson6\\Downloads\\eclipse-workspace\\lab\\src\\words.txt")); scan
-						.hasNextLine(); fin += getPoints(line)) {
-			line = scan.nextLine();
+		Scanner scan = new Scanner(new File("C:\\Users\\colen\\eclipse-workspace\\aoc\\src\\words.txt"));
+		ArrayList<Integer> arr = getValues(scan);
+		int[] numOfCards = new int[arr.size()];
+		for (int i = 0; i < numOfCards.length; i++) {
+			numOfCards[i] = 1;
 		}
-
+		for (int i = 0; i < numOfCards.length; i++) {
+			incrementValues(i, arr.get(i), numOfCards);
+		}
+		//System.out.println(fin);
+		for (int i : numOfCards) {
+			fin+=i;
+		}
 		System.out.println(fin);
 		scan.close();
 	}
+	
+	public static int[] incrementValues(int start, int num, int[] arr) {
+		for (int i = start+1; i <= start+num; i++) {
+			arr[i]+=arr[start];
+		}
+		return arr;
+	}
 
 	public static int getPoints(String line) {
-		return compare(toIntArrayList(split(line)[1].strip()), getSet(toIntArrayList(split(line)[2].strip())));
+		return getVal(compare(toIntArrayList(split(line)[1].strip()), getSet(toIntArrayList(split(line)[2].strip()))));
+	}
+
+	public static ArrayList<Integer> getValues(Scanner scan) {
+		ArrayList<Integer> arr = new ArrayList<>();
+		String line;
+		while(scan.hasNext()) {
+			line = scan.nextLine();
+			arr.add(compare(toIntArrayList(split(line)[1].strip()), getSet(toIntArrayList(split(line)[2].strip()))));
+		}
+		return arr;
 	}
 
 	public static int getVal(int times) {
@@ -70,7 +91,7 @@ class aocDay_4 {
 	}
 
 	private static Set<Integer> getSet(ArrayList<Integer> arr) {
-		Set<Integer> set = new HashSet();
+		Set<Integer> set = new HashSet<>();
 		set.addAll(arr);
 		return set;
 	}
