@@ -10,25 +10,25 @@ public class Day06 {
 		System.out.println(part1("C:\\Users\\colen\\eclipse-workspace\\aoc\\src\\words.txt"));
 	}
 
-	private static int part1(String fileName) throws FileNotFoundException {
+	private static long part1(String fileName) throws FileNotFoundException {
 		Scanner scan = new Scanner(new File(fileName));
 		return fillMap(scan);
 	}
 
-	private static int fillMap(Scanner scan) {
+	private static long fillMap(Scanner scan) {
 		String[] string1 = filterInput(scan);
 		String[] string2 = filterInput(scan);
-		int total = 1;
+		long total = 1;
 		for (int i = 1; i < string2.length; i++) {
-			total *= marginOfError(Integer.parseInt(string1[i]), Integer.parseInt(string2[i]));
+			total *= marginOfError(Long.parseLong(string1[i]), Long.parseLong(string2[i]));
 		}
 		return total;
 	}
 
-	private static int marginOfError(int duration, int high) {
-		int min = 0;
-		int max = 0;
-		int i = 0;
+	private static long marginOfError(long duration, long high) {
+		long min = 0;
+		long max = 0;
+		long i = 0;
 		while(distance(duration, i)<=high) {
 			i++;
 		}
@@ -40,7 +40,7 @@ public class Day06 {
 		return max-min;
 	}
 
-	private static int distance(int duration, int speed) {
+	private static long distance(long duration, long speed) {
 		return (duration-speed)*speed;
 	}
 
