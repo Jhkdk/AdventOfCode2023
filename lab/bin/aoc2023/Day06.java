@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Day06 {
-
 	public static void main(String[] args) throws FileNotFoundException {
 		System.out.println(part1("C:\\Users\\colen\\eclipse-workspace\\aoc\\src\\words.txt"));
 	}
@@ -48,5 +47,4 @@ public class Day06 {
 		String str = scan.nextLine();
 		return str.split("[ :]");
 	}
-
 }
