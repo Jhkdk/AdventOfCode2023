@@ -15,7 +15,7 @@ public class Day03 {
 		int num = 0;
 		int fin = 0;
 
-		Scanner scan = new Scanner(new File("C:\\Users\\colen\\eclipse-workspace\\aoc\\src\\words.txt"));
+		Scanner scan = new Scanner(new File("words.txt"));
 		// filling array by splitting code into lines and splitting those into values
 		while (scan.hasNextLine()) {
 			grid.add(new ArrayList<>(Arrays.asList(scan.nextLine().split(""))));
